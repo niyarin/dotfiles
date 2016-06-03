@@ -84,8 +84,8 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-
-
+"zenkaku
+set ambiwidth=double
 
 
 syntax on
@@ -100,7 +100,8 @@ highlight Normal ctermbg=none
 
 nnoremap ; :
 nnoremap : ;
-
+vnoremap ; :
+vnoremap : ;
 
 
 
