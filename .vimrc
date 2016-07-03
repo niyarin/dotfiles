@@ -121,6 +121,8 @@ highlight Normal ctermbg=none
 
 nnoremap ; :
 nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 
 
