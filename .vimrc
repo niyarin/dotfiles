@@ -39,42 +39,57 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 	
 	NeoBundleFetch 'Shougo/neobundle.vim'
-
-	NeoBundle 'Shougo/neocomplcache'
 	NeoBundle 'mattn/emmet-vim'								
     NeoBundle 'jonathanfilip/vim-lucius'
     NeoBundle 't9md/vim-quickhl'
     NeoBundle 'tomtom/tcomment_vim'
-
+    NeoBundle 'vim-scripts/javacomplete'
 
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
 
 
-	"necomplete{
-		let g:acp_enableAtStartup = 0
-		let g:neocomplcache_enable_at_startup = 1
-		let g:neocomplcache_enable_smart_case = 1
-		let g:neocomplcache_min_syntax_length = 3
-		let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-		let g:neocomplcache_dictionary_filetype_lists = {
+
+      NeoBundleLazy 'Shougo/neocomplete.vim', {
+          \ 'depends' : 'Shougo/vimproc',
+          \ 'autoload' : { 'insert' : 1,}
+          \ }
+
+
+	"necomplete{
+        
+let g:neocomplete#enable_at_startup               = 1
+let g:neocomplete#auto_completion_start_length    = 3
+let g:neocomplete#enable_ignore_case              = 1
+let g:neocomplete#enable_smart_case               = 1
+let g:neocomplete#enable_camel_case               = 1
+let g:neocomplete#use_vimproc                     = 1
+let g:neocomplete#sources#buffer#cache_limit_size = 1000000
+let g:neocomplete#sources#tags#cache_limit_size   = 30000000
+let g:neocomplete#enable_fuzzy_completion         = 1
+let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+
+        let g:neocomplete#dictionary#dictionaries = {
 		\ 'default' : ''
 		\ }
+
+
+
+
+
+
+
+
 		inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 	"}
 	
 
-
 "-----VIM QUICIKHL------
 "-----------------------
 nmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
-
-
-
-
 
 
 call neobundle#end()
@@ -84,8 +99,14 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-"zenkaku
-set ambiwidth=double
+
+"-----java complete-----
+"-----------------------
+autocmd FileType java :setlocal omnifunc=javacomplete#Complete
+autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
+
+
+
 
 
 syntax on
@@ -100,8 +121,7 @@ highlight Normal ctermbg=none
 
 nnoremap ; :
 nnoremap : ;
-vnoremap ; :
-vnoremap : ;
+
 
 
 
