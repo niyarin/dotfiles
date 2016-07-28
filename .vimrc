@@ -7,6 +7,9 @@ set cursorline
 set expandtab
 set hlsearch
 
+set list
+set listchars=tab:>\ 
+
 
 
 imap <C-f> <esc>
@@ -18,7 +21,7 @@ inoremap <C-e> <End>
 "----------------------------------------------------
 
 if $SHELL =~ 'fish'
-	  set shell=/bin/sh
+      set shell=/bin/sh
 endif
 
 
@@ -37,9 +40,8 @@ endif
 
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-	
-	NeoBundleFetch 'Shougo/neobundle.vim'
-	NeoBundle 'mattn/emmet-vim'								
+    NeoBundleFetch 'Shougo/neobundle.vim'
+    NeoBundle 'mattn/emmet-vim'
     NeoBundle 'jonathanfilip/vim-lucius'
     NeoBundle 't9md/vim-quickhl'
     NeoBundle 'tomtom/tcomment_vim'
@@ -57,7 +59,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
           \ }
 
 
-	"necomplete{
+    "necomplete{
         
 let g:neocomplete#enable_at_startup               = 1
 let g:neocomplete#auto_completion_start_length    = 3
@@ -71,8 +73,8 @@ let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 
         let g:neocomplete#dictionary#dictionaries = {
-		\ 'default' : ''
-		\ }
+        \ 'default' : ''
+        \ }
 
 
 
@@ -81,10 +83,10 @@ let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 
 
 
-		inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-	"}
-	
+    "}
+
 
 "-----VIM QUICIKHL------
 "-----------------------
@@ -113,16 +115,17 @@ syntax on
 set background=dark
 set t_Co=256
 colorscheme lucius
+
 highlight LineNr ctermfg=darkgrey ctermbg=None
 highlight CursorLineNr ctermfg=blue
 highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
 "colorscheme ron
 highlight Normal ctermbg=none
 
+highlight SpecialKey term=none cterm=none ctermbg=red ctermfg=white
+
 nnoremap ; :
 nnoremap : ;
-vnoremap ; :
-vnoremap : ;
 
 
 
