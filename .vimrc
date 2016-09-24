@@ -81,8 +81,8 @@ let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 
 
 
-
-
+        set completeopt=menuone
+        
         inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
     "}
