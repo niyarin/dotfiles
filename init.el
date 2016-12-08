@@ -59,3 +59,15 @@
 (define-key evil-normal-state-map ";" 'evil-ex)
 (define-key evil-insert-state-map "\C-f" 'evil-normal-state)
 
+
+
+;;   END MY VIM KEYCONFIG
+
+
+
+
+(global-linum-mode t)
+(load-theme 'manoj-dark t)
+
+
+
