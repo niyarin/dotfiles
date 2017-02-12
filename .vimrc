@@ -11,10 +11,11 @@ set list
 set listchars=tab:>\ 
 
 
+filetype on
 
 imap <C-f> <esc>
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
+
+nnoremap <C-f> <NOP>
 
 "----------------------------------------------------
 "                       fish
@@ -106,6 +107,11 @@ NeoBundleCheck
 "-----------------------
 autocmd FileType java :setlocal omnifunc=javacomplete#Complete
 autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
+
+
+"-------scheme config -------------------
+autocmd FileType scheme :set tabstop=2
+autocmd FileType scheme :set shiftwidth=2
 
 
 
