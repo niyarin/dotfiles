@@ -10,12 +10,15 @@ set hlsearch
 set list
 set listchars=tab:>\ 
 
-
 filetype on
 
 imap <C-f> <esc>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
 
 nnoremap <C-f> <NOP>
+vmap <C-f>  <esc>
+
 
 "----------------------------------------------------
 "                       fish
@@ -24,7 +27,6 @@ nnoremap <C-f> <NOP>
 if $SHELL =~ 'fish'
       set shell=/bin/sh
 endif
-
 
 
 
@@ -47,7 +49,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 't9md/vim-quickhl'
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'vim-scripts/javacomplete'
-
+    "NeoBundle 'vim-scripts/paredit.vim'
+    NeoBundle 'scrooloose/nerdtree'
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
 
@@ -109,10 +112,26 @@ autocmd FileType java :setlocal omnifunc=javacomplete#Complete
 autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 
 
-"-------scheme config -------------------
-autocmd FileType scheme :set tabstop=2
-autocmd FileType scheme :set shiftwidth=2
 
+"-------scheme config -------------------
+
+autocmd FileType scheme :set tabstop=3
+autocmd FileType scheme :set shiftwidth=3
+autocmd FileType scheme :set softtabstop=3
+autocmd FileType scheme :set nocindent
+"autocmd FileType scheme :set nolisp
+
+autocmd FileType scheme :set nosmartindent
+autocmd FileType scheme :set lispwords=define,let,if,lambda
+
+
+"------TODO HIGLIHT
+
+augroup HilightsForce
+      autocmd!
+      autocmd WinEnter,BufRead,BufNew,Syntax * :silent! call matchadd('Todo', '\(TODO\|NOTE\|INFO\|XXX\|TEMP\):')
+      autocmd WinEnter,BufRead,BufNew,Syntax * highlight Todo guibg=Red guifg=White
+augroup END
 
 
 
@@ -120,7 +139,8 @@ autocmd FileType scheme :set shiftwidth=2
 syntax on
 set background=dark
 set t_Co=256
-colorscheme lucius
+"colorscheme lucius
+colorscheme gruvbox
 
 highlight LineNr ctermfg=darkgrey ctermbg=None
 highlight CursorLineNr ctermfg=blue
@@ -133,6 +153,6 @@ highlight SpecialKey term=none cterm=none ctermbg=red ctermfg=white
 nnoremap ; :
 nnoremap : ;
 
-
-
+vnoremap ; :
+vnoremap : ;
 
