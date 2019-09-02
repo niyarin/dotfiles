@@ -45,26 +45,22 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
     NeoBundle 'mattn/emmet-vim'
-    NeoBundle 'jonathanfilip/vim-lucius'
+    NeoBundle 'jacoborus/tender.vim'
+    NeoBundle 'romainl/Apprentice'
     NeoBundle 't9md/vim-quickhl'
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'vim-scripts/javacomplete'
-    "NeoBundle 'vim-scripts/paredit.vim'
+    NeoBundle 'romainl/Apprentice'
     NeoBundle 'scrooloose/nerdtree'
+    NeoBundle 'kana/vim-submode'
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
+    NeoBundleLazy 'Shougo/neocomplete.vim', {
+      \ 'depends' : 'Shougo/vimproc',
+      \ 'autoload' : { 'insert' : 1,}
+      \ }
+call neobundle#end()
 
-
-
-
-      NeoBundleLazy 'Shougo/neocomplete.vim', {
-          \ 'depends' : 'Shougo/vimproc',
-          \ 'autoload' : { 'insert' : 1,}
-          \ }
-
-
-    "necomplete{
-        
 let g:neocomplete#enable_at_startup               = 1
 let g:neocomplete#auto_completion_start_length    = 3
 let g:neocomplete#enable_ignore_case              = 1
@@ -81,15 +77,8 @@ let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
         \ }
 
 
-
-
-
-
-        set completeopt=menuone
-        
-        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-    "}
+set completeopt=menuone
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 "-----VIM QUICIKHL------
@@ -98,12 +87,26 @@ nmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 
 
-call neobundle#end()
 
 
 filetype plugin indent on
 
 NeoBundleCheck
+
+
+call plug#begin()
+    Plug 'ctrlpvim/ctrlp.vim'
+    " or
+
+    "Plug 'guns/vim-sexp',    {'for': 'clojure'}
+    "Plug 'liquidz/vim-iced', {'for': 'clojure'}
+call plug#end()
+
+"-----sub mode -----"
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
 
 
 "-----java complete-----
@@ -125,6 +128,18 @@ autocmd FileType scheme :set nosmartindent
 autocmd FileType scheme :set lispwords=define,let,if,lambda
 
 
+
+
+
+"--------clojure cof 
+autocmd FileType clojure :set tabstop=3
+autocmd FileType clojure :set shiftwidth=3
+autocmd FileType clojure :set softtabstop=3
+
+
+
+
+
 "------TODO HIGLIHT
 
 augroup HilightsForce
@@ -134,14 +149,16 @@ augroup HilightsForce
 augroup END
 
 
+let g:iced_enable_default_key_mappings = v:true
+
+set hidden
+
 
 
 syntax on
 set background=dark
 set t_Co=256
-"colorscheme lucius
-colorscheme gruvbox
-
+colorscheme apprentice
 highlight LineNr ctermfg=darkgrey ctermbg=None
 highlight CursorLineNr ctermfg=blue
 highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
@@ -155,4 +172,5 @@ nnoremap : ;
 
 vnoremap ; :
 vnoremap : ;
+
 
