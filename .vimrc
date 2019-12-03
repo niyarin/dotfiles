@@ -53,6 +53,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 'romainl/Apprentice'
     NeoBundle 'scrooloose/nerdtree'
     NeoBundle 'kana/vim-submode'
+    NeoBundle 'tpope/vim-fireplace'
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
     NeoBundleLazy 'Shougo/neocomplete.vim', {
@@ -95,7 +96,7 @@ NeoBundleCheck
 
 
 call plug#begin()
-    Plug 'ctrlpvim/ctrlp.vim'
+    "Plug 'ctrlpvim/ctrlp.vim'
     " or
 
     "Plug 'guns/vim-sexp',    {'for': 'clojure'}
