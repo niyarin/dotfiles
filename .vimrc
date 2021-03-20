@@ -8,7 +8,7 @@ set expandtab
 set hlsearch
 
 set list
-set listchars=tab:>\ 
+set listchars=tab:>\ ,trail:-
 
 filetype on
 
@@ -50,10 +50,11 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 't9md/vim-quickhl'
     NeoBundle 'tomtom/tcomment_vim'
     NeoBundle 'vim-scripts/javacomplete'
-    NeoBundle 'romainl/Apprentice'
     NeoBundle 'scrooloose/nerdtree'
     NeoBundle 'kana/vim-submode'
     NeoBundle 'tpope/vim-fireplace'
+    NeoBundle 'w0rp/ale'
+    NeoBundle 'venantius/vim-cljfmt'
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
     NeoBundleLazy 'Shougo/neocomplete.vim', {
@@ -119,9 +120,9 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 
 "-------scheme config -------------------
 
-autocmd FileType scheme :set tabstop=3
-autocmd FileType scheme :set shiftwidth=3
-autocmd FileType scheme :set softtabstop=3
+autocmd FileType scheme :set tabstop=2
+autocmd FileType scheme :set shiftwidth=2
+autocmd FileType scheme :set softtabstop=2
 autocmd FileType scheme :set nocindent
 "autocmd FileType scheme :set nolisp
 
@@ -132,10 +133,11 @@ autocmd FileType scheme :set lispwords=define,let,if,lambda
 
 
 
-"--------clojure cof 
-autocmd FileType clojure :set tabstop=3
-autocmd FileType clojure :set shiftwidth=3
-autocmd FileType clojure :set softtabstop=3
+"--------clojure cof
+autocmd FileType clojure :set tabstop=2
+autocmd FileType clojure :set shiftwidth=2
+autocmd FileType clojure :set softtabstop=2
+let g:ale_linters = {'clojure': ['clj-kondo']}
 
 
 
@@ -149,6 +151,7 @@ augroup HilightsForce
       autocmd WinEnter,BufRead,BufNew,Syntax * highlight Todo guibg=Red guifg=White
 augroup END
 
+autocmd BufNewFile,BufRead *.elbow  set filetype=scheme
 
 let g:iced_enable_default_key_mappings = v:true
 
@@ -174,4 +177,5 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
