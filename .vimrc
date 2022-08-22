@@ -57,29 +57,11 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 'venantius/vim-cljfmt'
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
-    NeoBundleLazy 'Shougo/neocomplete.vim', {
-      \ 'depends' : 'Shougo/vimproc',
-      \ 'autoload' : { 'insert' : 1,}
-      \ }
+    NeoBundle 'Shougo/deoplete.nvim'
+    NeoBundle 'roxma/nvim-yarp'
+    NeoBundle 'roxma/vim-hug-neovim-rpc'
 call neobundle#end()
 
-let g:neocomplete#enable_at_startup               = 1
-let g:neocomplete#auto_completion_start_length    = 3
-let g:neocomplete#enable_ignore_case              = 1
-let g:neocomplete#enable_smart_case               = 1
-let g:neocomplete#enable_camel_case               = 1
-let g:neocomplete#use_vimproc                     = 1
-let g:neocomplete#sources#buffer#cache_limit_size = 1000000
-let g:neocomplete#sources#tags#cache_limit_size   = 30000000
-let g:neocomplete#enable_fuzzy_completion         = 1
-let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
-
-        let g:neocomplete#dictionary#dictionaries = {
-        \ 'default' : ''
-        \ }
-
-
-set completeopt=menuone
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
@@ -88,7 +70,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 nmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 
-
+let g:deoplete#enable_at_startup = 1
 
 
 filetype plugin indent on
@@ -96,13 +78,13 @@ filetype plugin indent on
 NeoBundleCheck
 
 
-call plug#begin()
+"call plug#begin()
     "Plug 'ctrlpvim/ctrlp.vim'
     " or
 
     "Plug 'guns/vim-sexp',    {'for': 'clojure'}
     "Plug 'liquidz/vim-iced', {'for': 'clojure'}
-call plug#end()
+"call plug#end()
 
 "-----sub mode -----"
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
