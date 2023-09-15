@@ -10,6 +10,7 @@ set hlsearch
 set list
 set listchars=tab:>\ ,trail:-
 
+
 filetype on
 
 imap <C-f> <esc>
@@ -18,7 +19,6 @@ inoremap <C-e> <End>
 
 nnoremap <C-f> <NOP>
 vmap <C-f>  <esc>
-
 
 "----------------------------------------------------
 "                       fish
@@ -44,6 +44,7 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundleFetch 'Shougo/neobundle.vim'
+    NeoBundle "w0ng/vim-hybrid"
     NeoBundle 'mattn/emmet-vim'
     NeoBundle 'jacoborus/tender.vim'
     NeoBundle 'romainl/Apprentice'
@@ -54,14 +55,34 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 'kana/vim-submode'
     NeoBundle 'tpope/vim-fireplace'
     NeoBundle 'w0rp/ale'
+    NeoBundle 'guns/vim-sexp'
+    NeoBundle 'tpope/vim-fugitive'
     NeoBundle 'venantius/vim-cljfmt'
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
-    NeoBundle 'Shougo/deoplete.nvim'
-    NeoBundle 'roxma/nvim-yarp'
-    NeoBundle 'roxma/vim-hug-neovim-rpc'
+    NeoBundleLazy 'Shougo/neocomplete.vim', {
+      \ 'depends' : 'Shougo/vimproc',
+      \ 'autoload' : { 'insert' : 1,}
+      \ }
 call neobundle#end()
 
+let g:neocomplete#enable_at_startup               = 1
+let g:neocomplete#auto_completion_start_length    = 3
+let g:neocomplete#enable_ignore_case              = 1
+let g:neocomplete#enable_smart_case               = 1
+let g:neocomplete#enable_camel_case               = 1
+let g:neocomplete#use_vimproc                     = 1
+let g:neocomplete#sources#buffer#cache_limit_size = 1000000
+let g:neocomplete#sources#tags#cache_limit_size   = 30000000
+let g:neocomplete#enable_fuzzy_completion         = 1
+let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+
+        let g:neocomplete#dictionary#dictionaries = {
+        \ 'default' : ''
+        \ }
+
+
+set completeopt=menuone
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
@@ -70,7 +91,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 nmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 
-let g:deoplete#enable_at_startup = 1
+
 
 
 filetype plugin indent on
@@ -78,13 +99,19 @@ filetype plugin indent on
 NeoBundleCheck
 
 
-"call plug#begin()
+call plug#begin()
     "Plug 'ctrlpvim/ctrlp.vim'
     " or
 
     "Plug 'guns/vim-sexp',    {'for': 'clojure'}
     "Plug 'liquidz/vim-iced', {'for': 'clojure'}
-"call plug#end()
+    "
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+
+    " If you have nodejs and yarn
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+call plug#end()
 
 "-----sub mode -----"
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
@@ -122,6 +149,7 @@ autocmd FileType clojure :set softtabstop=2
 let g:ale_linters = {'clojure': ['clj-kondo']}
 
 
+let maplocalleader=","
 
 
 
@@ -135,16 +163,14 @@ augroup END
 
 autocmd BufNewFile,BufRead *.elbow  set filetype=scheme
 
-let g:iced_enable_default_key_mappings = v:true
-
 set hidden
+set conceallevel=2
 
-
-
-syntax on
 set background=dark
 set t_Co=256
-colorscheme apprentice
+"colorscheme apprentice
+colorscheme hybrid
+
 highlight LineNr ctermfg=darkgrey ctermbg=None
 highlight CursorLineNr ctermfg=blue
 highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
