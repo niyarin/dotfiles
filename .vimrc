@@ -60,30 +60,13 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 'venantius/vim-cljfmt'
     NeoBundleLazy 'tpope/vim-endwise', {
       \ 'autoload' : { 'insert' : 1,}}
-    NeoBundleLazy 'Shougo/neocomplete.vim', {
-      \ 'depends' : 'Shougo/vimproc',
-      \ 'autoload' : { 'insert' : 1,}
-      \ }
 call neobundle#end()
-
-let g:neocomplete#enable_at_startup               = 1
-let g:neocomplete#auto_completion_start_length    = 3
-let g:neocomplete#enable_ignore_case              = 1
-let g:neocomplete#enable_smart_case               = 1
-let g:neocomplete#enable_camel_case               = 1
-let g:neocomplete#use_vimproc                     = 1
-let g:neocomplete#sources#buffer#cache_limit_size = 1000000
-let g:neocomplete#sources#tags#cache_limit_size   = 30000000
-let g:neocomplete#enable_fuzzy_completion         = 1
-let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
-
-        let g:neocomplete#dictionary#dictionaries = {
-        \ 'default' : ''
-        \ }
-
 
 set completeopt=menuone
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+let g:deoplete#enable_at_startup = 1
 
 
 "-----VIM QUICIKHL------
@@ -111,6 +94,10 @@ call plug#begin()
 
     " If you have nodejs and yarn
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+
 call plug#end()
 
 "-----sub mode -----"
