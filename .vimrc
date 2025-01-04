@@ -36,31 +36,34 @@ endif
 "-----------------------------------------------------
 
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+
+call plug#begin()
+    Plug 'w0ng/vim-hybrid'
+    Plug 'mattn/emmet-vim'
+    Plug 'jacoborus/tender.vim'
+    Plug 'romainl/Apprentice'
+    Plug 't9md/vim-quickhl'
+    Plug 'tomtom/tcomment_vim'
+    Plug 'vim-scripts/javacomplete'
+    Plug 'scrooloose/nerdtree'
+    Plug 'kana/vim-submode'
+    Plug 'tpope/vim-fireplace'
+    Plug 'w0rp/ale'
+    Plug 'guns/vim-sexp'
+    Plug 'tpope/vim-fugitive'
+    Plug 'venantius/vim-cljfmt'
+
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 
+    " If you have nodejs and yarn
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-    NeoBundleFetch 'Shougo/neobundle.vim'
-    NeoBundle "w0ng/vim-hybrid"
-    NeoBundle 'mattn/emmet-vim'
-    NeoBundle 'jacoborus/tender.vim'
-    NeoBundle 'romainl/Apprentice'
-    NeoBundle 't9md/vim-quickhl'
-    NeoBundle 'tomtom/tcomment_vim'
-    NeoBundle 'vim-scripts/javacomplete'
-    NeoBundle 'scrooloose/nerdtree'
-    NeoBundle 'kana/vim-submode'
-    NeoBundle 'tpope/vim-fireplace'
-    NeoBundle 'w0rp/ale'
-    NeoBundle 'guns/vim-sexp'
-    NeoBundle 'tpope/vim-fugitive'
-    NeoBundle 'venantius/vim-cljfmt'
-    NeoBundleLazy 'tpope/vim-endwise', {
-      \ 'autoload' : { 'insert' : 1,}}
-call neobundle#end()
+call plug#end()
+
 
 set completeopt=menuone
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -74,31 +77,9 @@ let g:deoplete#enable_at_startup = 1
 nmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 
-
-
-
 filetype plugin indent on
 
-NeoBundleCheck
 
-
-call plug#begin()
-    "Plug 'ctrlpvim/ctrlp.vim'
-    " or
-
-    "Plug 'guns/vim-sexp',    {'for': 'clojure'}
-    "Plug 'liquidz/vim-iced', {'for': 'clojure'}
-    "
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-
-
-    " If you have nodejs and yarn
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-
-call plug#end()
 
 "-----sub mode -----"
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
